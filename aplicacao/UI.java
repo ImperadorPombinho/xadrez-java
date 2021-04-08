@@ -42,9 +42,9 @@ public class UI {
             System.out.print("-");
         }else{
             if(peca.getCorzinha() == cor.WHITE){
-                System.out.println(ANSI_WHITE + peca + ANSI_RESET);
+                System.out.print(ANSI_WHITE + peca + ANSI_RESET);
             }else{
-                System.out.println(ANSI_RED + peca + ANSI_RESET);
+                System.out.print(ANSI_RED + peca + ANSI_RESET);
             }
         }
         System.out.print(" ");
