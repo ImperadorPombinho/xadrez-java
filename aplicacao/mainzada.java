@@ -1,13 +1,15 @@
 package Xadrez.aplicacao;
 
 
-import Xadrez.tabuleirogame.tabuleiro;
+
+import Xadrez.xadrezin.partidaxadrez;
+
 
 public class mainzada {
     public static void main(String[] args) {
 
-        tabuleiro tabul = new tabuleiro(8, 8);
-        
+       partidaxadrez partidaxadrez = new partidaxadrez();
+       UI.printartabuleiro(partidaxadrez.getpecas()); 
     }
     
 }
