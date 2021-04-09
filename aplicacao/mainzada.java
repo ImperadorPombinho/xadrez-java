@@ -20,6 +20,10 @@ public class mainzada {
             System.out.print("Posicao de origem: ");
             xadrezposicao origem = UI.lerPosicaoXadrez(scan);
             
+            boolean[][] possiveismovimentos = partidaxadrez.possiveisMovimentos(origem);
+            UI.limparTelaConsole();
+            UI.printartabuleiro(partidaxadrez.getpecas(), possiveismovimentos);
+
             System.out.println();
             System.out.print("Posicao de destino: ");
             xadrezposicao destino = UI.lerPosicaoXadrez(scan);

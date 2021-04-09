@@ -50,7 +50,7 @@ public class UI {
         for (int i = 0; i < pecas.length; i++) {
             System.out.print((8-i) + " ");
             for (int j = 0; j < pecas.length; j++) {
-                printarpeca(pecas[i][j]);
+                printarpeca(pecas[i][j], false);
                 
             }
             System.out.println();
@@ -58,9 +58,24 @@ public class UI {
         System.out.println("  a b c d e f g h");
 
     }
-    private static void printarpeca(xadrezpeca peca){
+    public static void printartabuleiro(xadrezpeca[][] pecas, boolean[][] possiveismovimentos){
+        for (int i = 0; i < pecas.length; i++) {
+            System.out.print((8-i) + " ");
+            for (int j = 0; j < pecas.length; j++) {
+                printarpeca(pecas[i][j], possiveismovimentos[i][j]);
+                
+            }
+            System.out.println();
+        }
+        System.out.println("  a b c d e f g h");
+
+    }
+    private static void printarpeca(xadrezpeca peca, boolean telaDeFundo){
+        if(telaDeFundo == true){
+            System.out.print(ANSI_CYAN_BACKGROUND);
+        }
         if(peca == null){
-            System.out.print("-");
+            System.out.print("-" + ANSI_RESET);
         }else{
             if(peca.getCorzinha() == cor.WHITE){
                 System.out.print(ANSI_WHITE + peca + ANSI_RESET);
