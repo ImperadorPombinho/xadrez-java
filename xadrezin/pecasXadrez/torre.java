@@ -12,7 +12,7 @@ public class torre extends xadrezpeca{
     }
     @Override
     public String toString(){
-        return "T";
+        return "♜";
     }
 
     

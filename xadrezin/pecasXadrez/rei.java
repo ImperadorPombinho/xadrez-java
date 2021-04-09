@@ -13,6 +13,6 @@ public class rei extends xadrezpeca{
     @Override
     public String toString(){
         //k simboliza rei no tabuleiro
-        return "K";
+        return "♚";
     }
 }
