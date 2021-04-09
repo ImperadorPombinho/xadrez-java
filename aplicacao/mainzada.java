@@ -24,6 +24,7 @@ public class mainzada {
         xadrezposicao destino = UI.lerPosicaoXadrez(scan);
 
         xadrezpeca pecaCapturada = partidaxadrez.perfomaceMoveXadrezPeca(origem, destino);
+        //System.out.println("pecapturada: " + pecaCapturada);
        }
         
     }
