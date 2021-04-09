@@ -1,6 +1,6 @@
 package Xadrez.tabuleirogame;
 
-public class peca {
+public abstract class peca {
     protected posicao posicaoo;
     private tabuleiro tabul;
 
@@ -15,5 +15,23 @@ public class peca {
         return tabul;
     }
     
+    public abstract boolean[][] possiveisMovimentos();
 
+    
+    public boolean possivelMovimento(posicao posicao){
+            return possiveisMovimentos()[posicao.getLinha()][posicao.getColuna()];
+    }
+
+    public boolean haAlgumMovimentoPossivel(){
+        boolean[][] matriz = possiveisMovimentos();
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz.length; j++) {
+                if(matriz[i][j] == true){
+                    return true;
+                }
+            }
+            
+        }
+        return false;
+    }
 }

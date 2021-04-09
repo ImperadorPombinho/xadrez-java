@@ -15,4 +15,9 @@ public class rei extends xadrezpeca{
         //k simboliza rei no tabuleiro
         return "♚";
     }
+    @Override
+    public boolean[][] possiveisMovimentos() {
+        boolean[][] matriz = new boolean[getTabul().getLinhas()][getTabul().getColunas()];
+        return matriz;
+    }
 }
