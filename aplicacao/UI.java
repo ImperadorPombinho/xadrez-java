@@ -1,10 +1,13 @@
 package Xadrez.aplicacao;
 
+import java.util.Arrays;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 import Xadrez.xadrezin.cor;
-import Xadrez.xadrezin.jogador;
+
 import Xadrez.xadrezin.partidaxadrez;
 import Xadrez.xadrezin.xadrezpeca;
 import Xadrez.xadrezin.xadrezposicao;
@@ -57,8 +60,10 @@ public class UI {
         }
 
     }
-    public static void printarPartida(partidaxadrez partidaxadrez, String[] nome){
+    public static void printarPartida(partidaxadrez partidaxadrez, String[] nome, List<xadrezpeca> capturadas){
         printartabuleiro(partidaxadrez.getpecas());
+        System.out.println();
+        printarPecasCapturadas(capturadas);
         System.out.println();
         System.out.println("Turno: " + partidaxadrez.getTurno());
         if(partidaxadrez.getJogador().getCorjogadoratual() == cor.WHITE){
@@ -105,12 +110,36 @@ public class UI {
             System.out.print("-" + ANSI_RESET);
         }else{
             if(peca.getCorzinha() == cor.WHITE){
-                System.out.print(ANSI_WHITE + peca + ANSI_RESET);
+                System.out.print(ANSI_GREEN + peca + ANSI_RESET);
             }else{
                 System.out.print(ANSI_RED + peca + ANSI_RESET);
             }
         }
         System.out.print(" ");
+
+    }
+    private static void printarLista(List<xadrezpeca> capturadas){
+        for (xadrezpeca xadrezpeca : capturadas) {
+            System.out.print("[" + xadrezpeca + " ]");
+        }
+        System.out.println();
+    }
+    private static void printarPecasCapturadas(List<xadrezpeca> capturadas){
+        List<xadrezpeca> brancas = capturadas.stream().filter(x -> x.getCorzinha() == cor.WHITE).collect(Collectors.toList());
+        List<xadrezpeca> pretas = capturadas.stream().filter(x -> x.getCorzinha() == cor.BLACK).collect(Collectors.toList());
+        System.out.println("pecas capturadas: ");
+        System.out.print(ANSI_GREEN);
+        System.out.print("Verdes: ");
+        printarLista(brancas);
+        System.out.print(ANSI_RESET);
+        System.out.print(ANSI_RED);
+        System.out.print("Vermelhas: ");
+        printarLista(pretas);
+        System.out.print(ANSI_RESET);
+
+
+
+
 
     }
 

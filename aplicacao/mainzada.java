@@ -1,11 +1,13 @@
 package Xadrez.aplicacao;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 
 import Xadrez.xadrezin.excecaoxadrez;
-import Xadrez.xadrezin.jogador;
+
 import Xadrez.xadrezin.partidaxadrez;
 import Xadrez.xadrezin.xadrezpeca;
 import Xadrez.xadrezin.xadrezposicao;
@@ -15,13 +17,13 @@ public class mainzada {
        Scanner scan = new Scanner(System.in);
        
        partidaxadrez partidaxadrez = new partidaxadrez();
-       
+       List<xadrezpeca> capturadas = new ArrayList<>();
          String[] nome = UI.lerNomes(scan);
          scan.nextLine();
        while(true){
         try{
             UI.limparTelaConsole();   
-            UI.printarPartida(partidaxadrez, nome);
+            UI.printarPartida(partidaxadrez, nome, capturadas);
             System.out.println();
             System.out.print("Posicao de origem: ");
             
@@ -36,6 +38,9 @@ public class mainzada {
             xadrezposicao destino = UI.lerPosicaoXadrez(scan);
 
             xadrezpeca pecaCapturada = partidaxadrez.perfomaceMoveXadrezPeca(origem, destino);
+            if(pecaCapturada != null){
+                capturadas.add(pecaCapturada);
+            }
             //System.out.println("pecapturada: " + pecaCapturada);
         }
         catch(excecaoxadrez e){
