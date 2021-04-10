@@ -3,7 +3,9 @@ package Xadrez.aplicacao;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+
 import Xadrez.xadrezin.excecaoxadrez;
+import Xadrez.xadrezin.jogador;
 import Xadrez.xadrezin.partidaxadrez;
 import Xadrez.xadrezin.xadrezpeca;
 import Xadrez.xadrezin.xadrezposicao;
@@ -11,13 +13,18 @@ import Xadrez.xadrezin.xadrezposicao;
 public class mainzada {
     public static void main(String[] args) {
        Scanner scan = new Scanner(System.in);
+       
        partidaxadrez partidaxadrez = new partidaxadrez();
+       
+         String[] nome = UI.lerNomes(scan);
+         scan.nextLine();
        while(true){
         try{
             UI.limparTelaConsole();   
-            UI.printartabuleiro(partidaxadrez.getpecas());  
+            UI.printarPartida(partidaxadrez, nome);
             System.out.println();
             System.out.print("Posicao de origem: ");
+            
             xadrezposicao origem = UI.lerPosicaoXadrez(scan);
             
             boolean[][] possiveismovimentos = partidaxadrez.possiveisMovimentos(origem);

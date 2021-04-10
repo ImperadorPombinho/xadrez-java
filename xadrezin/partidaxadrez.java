@@ -9,10 +9,21 @@ import Xadrez.xadrezin.pecasXadrez.torre;
 
 public class partidaxadrez {
     private tabuleiro tabuleiro;
+    private int turno;
+    private jogador jogador = new jogador();
+
     public partidaxadrez(){
         tabuleiro = new tabuleiro(8, 8);
+        turno = 1;
+        jogador.setCorjogadoratual(cor.WHITE);
         setupInicial();
     }
+    
+    public int getTurno() {
+        return turno;
+    }
+
+
     public xadrezpeca[][] getpecas(){
         xadrezpeca[][] mat = new xadrezpeca[tabuleiro.getLinhas()][tabuleiro.getColunas()];
         for (int i = 0; i < tabuleiro.getLinhas() ;i++) {
@@ -35,6 +46,7 @@ public class partidaxadrez {
         validacaoPosicaoOrigem(origem);
         validacaoPosicaoDestino(origem , destino);
         peca pecaCapturada = fazerMovimento(origem, destino);
+        proximoTurno();
         return (xadrezpeca) pecaCapturada;
 
     }
@@ -50,6 +62,9 @@ public class partidaxadrez {
             throw new excecaoxadrez("nao existe peca na posicao de origem");
             
         }
+        if(jogador.getCorjogadoratual() != ((xadrezpeca)tabuleiro.peca(posicao)).getCorzinha()){
+            throw new  excecaoxadrez("nao pode mover pecas adversarias");
+        }
         if(!tabuleiro.peca(posicao).haAlgumMovimentoPossivel()) {
             throw new excecaoxadrez("nao existe movimentos possiveis para a peca escolhida");
         }
@@ -58,6 +73,10 @@ public class partidaxadrez {
         if(!tabuleiro.peca(origem).possivelMovimento(destino)){
             throw new excecaoxadrez("a peca escolhida nao pode se mover para a posicao de destino");
         }
+    }
+    private void proximoTurno(){
+        turno++;
+        jogador.setCorjogadoratual((jogador.getCorjogadoratual() == cor.WHITE) ? cor.BLACK : cor.WHITE);
     }
     private void colocarNovaPeca(char coluna, int linha, xadrezpeca peca){
         tabuleiro.colocarPeca(peca, new xadrezposicao(coluna, linha).paraPosicao());
@@ -79,5 +98,16 @@ public class partidaxadrez {
 
 
      }
+
+    public jogador getJogador() {
+        return jogador;
+    }
+
+
+
+
+
+
+
     
 }

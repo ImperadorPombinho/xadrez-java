@@ -4,6 +4,8 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import Xadrez.xadrezin.cor;
+import Xadrez.xadrezin.jogador;
+import Xadrez.xadrezin.partidaxadrez;
 import Xadrez.xadrezin.xadrezpeca;
 import Xadrez.xadrezin.xadrezposicao;
 
@@ -34,6 +36,15 @@ public class UI {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
+    public static String[] lerNomes(Scanner scan){
+        String[] nome = new String[2];
+        for (int i = 0; i < nome.length; i++) {
+            System.out.print("Digite seu nome jogador #"+ (i+1) + ":");
+            nome[i] = scan.next();
+        }
+        return nome;
+    }
+
     public static xadrezposicao lerPosicaoXadrez(Scanner scan){
         try{
         String s = scan.nextLine();
@@ -45,6 +56,21 @@ public class UI {
             throw new InputMismatchException("erro lendo posicao de xadrez, valores validos sao de a1 a h8");
         }
 
+    }
+    public static void printarPartida(partidaxadrez partidaxadrez, String[] nome){
+        printartabuleiro(partidaxadrez.getpecas());
+        System.out.println();
+        System.out.println("Turno: " + partidaxadrez.getTurno());
+        if(partidaxadrez.getJogador().getCorjogadoratual() == cor.WHITE){
+            partidaxadrez.getJogador().setNome(nome[0]);
+            System.out.println("Esperando "+ partidaxadrez.getJogador().getNome()+ " jogar");
+
+        }else{
+            partidaxadrez.getJogador().setNome(nome[1]);
+            System.out.println("Esperando "+ partidaxadrez.getJogador().getNome() + " jogar");
+        }
+
+        
     }
     public static void printartabuleiro(xadrezpeca[][] pecas){
         for (int i = 0; i < pecas.length; i++) {
@@ -68,6 +94,7 @@ public class UI {
             System.out.println();
         }
         System.out.println("  a b c d e f g h");
+        
 
     }
     private static void printarpeca(xadrezpeca peca, boolean telaDeFundo){
