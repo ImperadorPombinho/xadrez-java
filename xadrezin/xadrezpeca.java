@@ -12,6 +12,10 @@ public abstract class xadrezpeca extends peca{
         this.corzinha = corzinha;
     }
 
+
+    public xadrezposicao getXadrezPosicao(){
+        return xadrezposicao.dePosicao(getPosicaoo());
+    }
     public cor getCorzinha() {
         return corzinha;
     }

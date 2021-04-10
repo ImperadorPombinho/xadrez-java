@@ -66,6 +66,9 @@ public class UI {
         printarPecasCapturadas(capturadas);
         System.out.println();
         System.out.println("Turno: " + partidaxadrez.getTurno());
+        if(partidaxadrez.getXeque() == true){
+            System.out.println("Voce esta em XEQUE vermao");
+        }
         if(partidaxadrez.getJogador().getCorjogadoratual() == cor.WHITE){
             partidaxadrez.getJogador().setNome(nome[0]);
             System.out.println("Esperando "+ partidaxadrez.getJogador().getNome()+ " jogar");

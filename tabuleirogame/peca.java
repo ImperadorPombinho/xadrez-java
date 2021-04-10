@@ -10,7 +10,9 @@ public abstract class peca {
         posicaoo = null;
     }
 
-
+    public posicao getPosicaoo() {
+        return posicaoo;
+    }
     protected tabuleiro getTabul() {
         return tabul;
     }
@@ -34,4 +36,10 @@ public abstract class peca {
         }
         return false;
     }
+
+
+
+
+
+
 }
