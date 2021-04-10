@@ -20,7 +20,7 @@ public class mainzada {
        List<xadrezpeca> capturadas = new ArrayList<>();
          String[] nome = UI.lerNomes(scan);
          scan.nextLine();
-       while(true){
+       while(!partidaxadrez.getXequeMate()){
         try{
             UI.limparTelaConsole();   
             UI.printarPartida(partidaxadrez, nome, capturadas);
@@ -53,6 +53,8 @@ public class mainzada {
             scan.nextLine();
         }
        }
+       UI.limparTelaConsole();
+       UI.printarPartida(partidaxadrez, nome, capturadas);
         
     }
 

@@ -15,6 +15,7 @@ public class partidaxadrez {
     private tabuleiro tabuleiro;
     private int turno;
     private boolean xeque;
+    private boolean xequeMate;
     private jogador jogador = new jogador();
 
     private List<peca> pecasNoTabuleiro = new ArrayList<>();
@@ -23,6 +24,7 @@ public class partidaxadrez {
         tabuleiro = new tabuleiro(8, 8);
         turno = 1;
         xeque = false;
+        xequeMate = false;
         jogador.setCorjogadoratual(cor.WHITE);
         setupInicial();
     }
@@ -31,6 +33,26 @@ public class partidaxadrez {
         return turno;
     }
 
+    public jogador getJogador() {
+        return jogador;
+    }
+
+
+
+    public void setXeque(boolean xeque) {
+        this.xeque = xeque;
+    }
+
+    public boolean getXeque() {
+        return xeque;
+    }
+    public boolean getXequeMate() {
+        return xequeMate;
+    }
+
+    public void setXequeMate(boolean xequeMate) {
+        this.xequeMate = xequeMate;
+    }
 
     public xadrezpeca[][] getpecas(){
         xadrezpeca[][] mat = new xadrezpeca[tabuleiro.getLinhas()][tabuleiro.getColunas()];
@@ -62,9 +84,13 @@ public class partidaxadrez {
         }
 
         setXeque((testarXeque(oponente(getJogador().getCorjogadoratual()))) ? true : false);
+        if(testarXequeMate(oponente(getJogador().getCorjogadoratual()))){
+            setXequeMate(true);
+        }else{
+            proximoTurno();
+        }
 
-
-        proximoTurno();
+        
         return (xadrezpeca) pecaCapturada;
 
     }
@@ -138,37 +164,53 @@ public class partidaxadrez {
         }
         return false;
     }
-     private void setupInicial(){
-         colocarNovaPeca('c', 1, new torre(tabuleiro, cor.WHITE));
-         colocarNovaPeca('c', 2, new torre(tabuleiro, cor.WHITE));
-         colocarNovaPeca('d', 2, new torre(tabuleiro, cor.WHITE));
-         colocarNovaPeca('e', 2, new torre(tabuleiro, cor.WHITE));
-         colocarNovaPeca('e', 1, new torre(tabuleiro, cor.WHITE));
-         colocarNovaPeca('d', 1, new rei(tabuleiro, cor.WHITE));
+    private boolean testarXequeMate(cor corzinhad){
+        if(!testarXeque(corzinhad)){
+            return false;
+        }
+        List<peca> lista = pecasNoTabuleiro.stream().filter(x -> ((xadrezpeca)x).getCorzinha() == corzinhad).collect(Collectors.toList());
 
-         colocarNovaPeca('c', 7, new torre(tabuleiro, cor.BLACK));
-         colocarNovaPeca('c', 8, new torre(tabuleiro, cor.BLACK));
-         colocarNovaPeca('d', 7, new torre(tabuleiro, cor.BLACK));
-         colocarNovaPeca('e', 7, new torre(tabuleiro, cor.BLACK));
-         colocarNovaPeca('e', 8, new torre(tabuleiro, cor.BLACK));
-         colocarNovaPeca('d', 8, new rei(tabuleiro, cor.BLACK));
+        for (peca peca : lista) {
+            boolean[][] aux = peca.possiveisMovimentos();
+            for (int i = 0; i < tabuleiro.getLinhas(); i++) {
+                for (int j = 0; j < tabuleiro.getColunas(); j++) {
+                    if(aux[i][j] == true){
+                        posicao origem = ((xadrezpeca)peca).getXadrezPosicao().paraPosicao();
+                        posicao destino = new posicao(i, j);
+                        peca pecacapturada = fazerMovimento(origem, destino);
+                        boolean testexequee = testarXeque(corzinhad);
+                        desfazerMovimento(origem, destino, pecacapturada);
+                        if(!testexequee){
+                            return false;
+                        }
+                    }
+                }
+                
+            }
+
+        }
+        return true;
+
+
+
+
+
+
+    }
+     private void setupInicial(){
+         colocarNovaPeca('h', 7, new torre(tabuleiro, cor.WHITE));
+         colocarNovaPeca('d', 1, new torre(tabuleiro, cor.WHITE));
+         colocarNovaPeca('e', 1, new rei(tabuleiro, cor.WHITE));
+
+         colocarNovaPeca('b', 8, new torre(tabuleiro, cor.BLACK));
+         colocarNovaPeca('a', 8, new rei(tabuleiro, cor.BLACK));
 
 
      }
 
-    public jogador getJogador() {
-        return jogador;
-    }
 
 
 
-    public void setXeque(boolean xeque) {
-        this.xeque = xeque;
-    }
-
-    public boolean getXeque() {
-        return xeque;
-    }
 
 
 

@@ -1,6 +1,6 @@
 package Xadrez.aplicacao;
 
-import java.util.Arrays;
+
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
@@ -66,17 +66,29 @@ public class UI {
         printarPecasCapturadas(capturadas);
         System.out.println();
         System.out.println("Turno: " + partidaxadrez.getTurno());
-        if(partidaxadrez.getXeque() == true){
-            System.out.println("Voce esta em XEQUE vermao");
-        }
-        if(partidaxadrez.getJogador().getCorjogadoratual() == cor.WHITE){
-            partidaxadrez.getJogador().setNome(nome[0]);
-            System.out.println("Esperando "+ partidaxadrez.getJogador().getNome()+ " jogar");
-
+        if(!partidaxadrez.getXequeMate()){
+            if(partidaxadrez.getXeque() == true){
+                System.out.println("Voce esta em XEQUE vermao");
+            }
+            if(partidaxadrez.getJogador().getCorjogadoratual() == cor.WHITE){
+                partidaxadrez.getJogador().setNome(nome[0]);
+                System.out.println("Esperando "+ partidaxadrez.getJogador().getNome()+ " jogar");
+    
+            }else{
+                partidaxadrez.getJogador().setNome(nome[1]);
+                System.out.println("Esperando "+ partidaxadrez.getJogador().getNome() + " jogar");
+            }
         }else{
-            partidaxadrez.getJogador().setNome(nome[1]);
-            System.out.println("Esperando "+ partidaxadrez.getJogador().getNome() + " jogar");
+            System.out.println("XEQUE-MATE VERMAO");
+            if(partidaxadrez.getJogador().getCorjogadoratual() == cor.WHITE){
+                System.out.println(" o vencendor eh : "+ANSI_GREEN_BACKGROUND +partidaxadrez.getJogador().getNome() + ANSI_RESET);
+            }else{
+                System.out.println(" o vencendor eh : "+ANSI_RED_BACKGROUND +partidaxadrez.getJogador().getNome() + ANSI_RESET);
+            }
+            
+
         }
+        
 
         
     }
