@@ -9,6 +9,7 @@ import Xadrez.tabuleirogame.peca;
 import Xadrez.tabuleirogame.posicao;
 import Xadrez.tabuleirogame.tabuleiro;
 import Xadrez.xadrezin.pecasXadrez.bispo;
+import Xadrez.xadrezin.pecasXadrez.cavalo;
 import Xadrez.xadrezin.pecasXadrez.peao;
 import Xadrez.xadrezin.pecasXadrez.rei;
 import Xadrez.xadrezin.pecasXadrez.torre;
@@ -203,6 +204,8 @@ public class partidaxadrez {
     }
      private void setupInicial(){
          colocarNovaPeca('h', 1, new torre(tabuleiro, cor.WHITE));
+         colocarNovaPeca('b', 1, new cavalo(tabuleiro, cor.WHITE));
+         colocarNovaPeca('g', 1, new cavalo(tabuleiro, cor.WHITE));
          colocarNovaPeca('c', 1, new bispo(tabuleiro, cor.WHITE));
          colocarNovaPeca('f', 1, new bispo(tabuleiro, cor.WHITE));
          colocarNovaPeca('a', 1, new torre(tabuleiro, cor.WHITE));
@@ -218,6 +221,8 @@ public class partidaxadrez {
 
 
          colocarNovaPeca('a', 8, new torre(tabuleiro, cor.BLACK));
+         colocarNovaPeca('b', 8, new cavalo(tabuleiro, cor.BLACK));
+         colocarNovaPeca('g', 8, new cavalo(tabuleiro, cor.BLACK));
          colocarNovaPeca('c', 8, new bispo(tabuleiro, cor.BLACK));
          colocarNovaPeca('f', 8, new bispo(tabuleiro, cor.BLACK));
          colocarNovaPeca('e', 8, new rei(tabuleiro, cor.BLACK));
