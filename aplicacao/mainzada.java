@@ -15,7 +15,7 @@ import Xadrez.xadrezin.xadrezposicao;
 public class mainzada {
     public static void main(String[] args) {
        Scanner scan = new Scanner(System.in);
-       
+       String tipo;
        partidaxadrez partidaxadrez = new partidaxadrez();
        List<xadrezpeca> capturadas = new ArrayList<>();
          String[] nome = UI.lerNomes(scan);
@@ -41,7 +41,10 @@ public class mainzada {
             if(pecaCapturada != null){
                 capturadas.add(pecaCapturada);
             }
-            //System.out.println("pecapturada: " + pecaCapturada);
+            if(partidaxadrez.getPromocao() != null){
+                tipo = UI.pedirPromocao(partidaxadrez, scan);
+                partidaxadrez.recolocacaoDaPecaPromovida(tipo);
+            }
         }
         catch(excecaoxadrez e){
             System.out.println(e.getMessage());

@@ -1,6 +1,7 @@
 package Xadrez.xadrezin;
 
 
+import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,6 +16,7 @@ import Xadrez.xadrezin.pecasXadrez.rainha;
 import Xadrez.xadrezin.pecasXadrez.rei;
 import Xadrez.xadrezin.pecasXadrez.torre;
 
+
 public class partidaxadrez {
     private tabuleiro tabuleiro;
     private int turno;
@@ -22,6 +24,7 @@ public class partidaxadrez {
     private boolean xequeMate;
     private jogador jogador = new jogador();
     private xadrezpeca enPassantVulnerabilidade;
+    private xadrezpeca promocao;
 
     private List<peca> pecasNoTabuleiro = new ArrayList<>();
     private List<peca> pecasCapturadas = new ArrayList<>();
@@ -35,6 +38,14 @@ public class partidaxadrez {
         setupInicial();
     }
     
+    public xadrezpeca getPromocao() {
+        return promocao;
+    }
+
+    private void setPromocao(xadrezpeca promocao) {
+        this.promocao = promocao;
+    }
+
     public xadrezpeca getEnPassantVulnerabilidade() {
         return enPassantVulnerabilidade;
     }
@@ -91,13 +102,23 @@ public class partidaxadrez {
         validacaoPosicaoDestino(origem , destino);
         peca pecaCapturada = fazerMovimento(origem, destino);
 
+        //jogada especial promoção
+
+
+
 
         if(testarXeque(getJogador().getCorjogadoratual())){
             desfazerMovimento(origem, destino, pecaCapturada);
             throw new excecaoxadrez("voce nao pode se colocar em Xeque");
         }
         xadrezpeca pecaMovida = (xadrezpeca)tabuleiro.peca(destino);
-
+        setPromocao(null);
+        if(pecaMovida instanceof peao){
+            if((pecaMovida.getCorzinha() == cor.WHITE && destino.getLinha() == 0 || pecaMovida.getCorzinha() == cor.BLACK && destino.getLinha() == 7 )){
+                setPromocao((xadrezpeca)tabuleiro.peca(destino));
+                setPromocao(recolocacaoDaPecaPromovida("♛"));
+            }
+        }
         setXeque((testarXeque(oponente(getJogador().getCorjogadoratual()))) ? true : false);
         if(testarXequeMate(oponente(getJogador().getCorjogadoratual()))){
             setXequeMate(true);
@@ -116,6 +137,34 @@ public class partidaxadrez {
         return (xadrezpeca) pecaCapturada;
 
     }
+    public xadrezpeca recolocacaoDaPecaPromovida(String tipo) {
+        if(getPromocao() == null ){
+            throw new IllegalStateException("nao ha peca para ser promovida");
+        }
+        if(!tipo.equals("♝") && !tipo.equals("♛") && !tipo.equals("♞") && !tipo.equals("♜")){
+            throw new InvalidParameterException("tipo invalido para a promocao");
+        }
+        posicao pos = getPromocao().getXadrezPosicao().paraPosicao();
+        peca aux = tabuleiro.removerPeca(pos);
+        pecasNoTabuleiro.remove(aux);
+
+        xadrezpeca novapeca = novaPeca(tipo, getPromocao().getCorzinha());
+        tabuleiro.colocarPeca(novapeca, pos);
+        pecasNoTabuleiro.add(novapeca);
+
+
+        return novapeca;
+        
+    }
+
+    private xadrezpeca novaPeca(String tipo, cor corzinha){
+        if(tipo.equals("♝")) return new bispo(tabuleiro, corzinha);
+        if(tipo.equals("♛")) return new rainha(tabuleiro, corzinha);
+        if(tipo.equals("♞")) return new cavalo(tabuleiro, corzinha);
+        return new torre(tabuleiro, corzinha);
+        
+    }
+
     private peca fazerMovimento(posicao origem, posicao destino){
         xadrezpeca retiradaOrigem = (xadrezpeca)tabuleiro.removerPeca(origem);
         retiradaOrigem.AumentarContadorMovimento();
