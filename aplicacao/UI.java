@@ -159,7 +159,7 @@ public class UI {
     }
     public static String pedirPromocao(partidaxadrez partidaxadrez, Scanner scan){
         String tipo;
-        System.out.println("me de o tipo de peça que quer promover "+partidaxadrez.getJogador().getNome()+" :");
+        System.out.println("me de o tipo de peça que quer promover "+partidaxadrez.getJogador().getNome()+":");
         if(partidaxadrez.getJogador().getCorjogadoratual() == cor.WHITE){
             System.out.println("1 - "+ANSI_RED +"♝" + ANSI_RESET);
             System.out.println("2 - "+ANSI_RED +"♞" + ANSI_RESET);
@@ -167,8 +167,11 @@ public class UI {
             System.out.println("4 - "+ANSI_RED +"♜" + ANSI_RESET);
             System.out.print("digite ae: ");
             int i = scan.nextInt();
-            if(i <= 0 || i >= 5){
-                throw new UIExcecao("voce errou o numero besta");
+            while(i <= 0 || i >= 5){
+                System.out.print("digite ae: ");
+                 i = scan.nextInt();
+                
+                
             }
             tipo = verification(i);
             scan.nextLine();
@@ -181,8 +184,11 @@ public class UI {
             System.out.println("4 - "+ANSI_GREEN +"♜" + ANSI_RESET);
             System.out.print("digite ae: ");
             int i = scan.nextInt();
-            if(i <= 0 || i >= 5){
-                throw new UIExcecao("voce errou o numero besta");
+            while(i <= 0 || i >= 5){
+                System.out.print("digite ae: ");
+             i = scan.nextInt();
+             
+                
             }
             tipo = verification(i);
             scan.nextLine();
