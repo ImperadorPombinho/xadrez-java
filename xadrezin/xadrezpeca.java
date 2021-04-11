@@ -3,7 +3,10 @@ package Xadrez.xadrezin;
 import Xadrez.tabuleirogame.peca;
 import Xadrez.tabuleirogame.posicao;
 import Xadrez.tabuleirogame.tabuleiro;
-
+/*
+Autor: Pedro Henrique Barros de Oliveira Sousa
+Professor Auxiliar/que ajudou: Nélio Alves -> github.com/acenelio
+*/
 public abstract class xadrezpeca extends peca{
     private cor corzinha;
     private int contMovimento;

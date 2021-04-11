@@ -11,7 +11,10 @@ import Xadrez.xadrezin.cor;
 import Xadrez.xadrezin.partidaxadrez;
 import Xadrez.xadrezin.xadrezpeca;
 import Xadrez.xadrezin.xadrezposicao;
-
+/*
+Autor: Pedro Henrique Barros de Oliveira Sousa
+Professor Auxiliar/que ajudou: Nélio Alves -> github.com/acenelio
+*/
 public class UI {
     // https://stackoverflow.com/questions/5762491/how-to-print-color-in-console-using-system-out-println
 

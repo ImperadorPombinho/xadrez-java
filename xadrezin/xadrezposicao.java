@@ -1,7 +1,10 @@
 package Xadrez.xadrezin;
 
 import Xadrez.tabuleirogame.posicao;
-
+/*
+Autor: Pedro Henrique Barros de Oliveira Sousa
+Professor Auxiliar/que ajudou: Nélio Alves -> github.com/acenelio
+*/
 public class xadrezposicao {
     private char coluna;
     private int linha;

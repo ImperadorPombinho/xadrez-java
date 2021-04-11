@@ -5,7 +5,10 @@ import Xadrez.tabuleirogame.tabuleiro;
 import Xadrez.xadrezin.cor;
 import Xadrez.xadrezin.partidaxadrez;
 import Xadrez.xadrezin.xadrezpeca;
-
+/*
+Autor: Pedro Henrique Barros de Oliveira Sousa
+Professor Auxiliar/que ajudou: Nélio Alves -> github.com/acenelio
+*/
 public class rei extends xadrezpeca{
 
     private partidaxadrez partidaxadrez;

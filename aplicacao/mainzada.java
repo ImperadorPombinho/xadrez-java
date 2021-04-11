@@ -11,7 +11,10 @@ import Xadrez.xadrezin.excecaoxadrez;
 import Xadrez.xadrezin.partidaxadrez;
 import Xadrez.xadrezin.xadrezpeca;
 import Xadrez.xadrezin.xadrezposicao;
-
+/*
+Autor: Pedro Henrique Barros de Oliveira Sousa
+Professor Auxiliar/que ajudou: Nélio Alves -> github.com/acenelio
+*/
 public class mainzada {
     public static void main(String[] args) {
        Scanner scan = new Scanner(System.in);

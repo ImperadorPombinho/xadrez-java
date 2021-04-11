@@ -1,5 +1,8 @@
 package Xadrez.xadrezin;
-
+/*
+Autor: Pedro Henrique Barros de Oliveira Sousa
+Professor Auxiliar/que ajudou: Nélio Alves -> github.com/acenelio
+*/
 public class jogador {
     private String nome;
     private cor corjogadoratual;

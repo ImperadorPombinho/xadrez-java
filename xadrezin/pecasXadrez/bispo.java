@@ -4,7 +4,10 @@ import Xadrez.tabuleirogame.posicao;
 import Xadrez.tabuleirogame.tabuleiro;
 import Xadrez.xadrezin.cor;
 import Xadrez.xadrezin.xadrezpeca;
-
+/*
+Autor: Pedro Henrique Barros de Oliveira Sousa
+Professor Auxiliar/que ajudou: Nélio Alves -> github.com/acenelio
+*/
 public class bispo extends xadrezpeca{
 
     public bispo(tabuleiro tabul, cor corzinha) {

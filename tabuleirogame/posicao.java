@@ -1,5 +1,8 @@
 package Xadrez.tabuleirogame;
-
+/*
+Autor: Pedro Henrique Barros de Oliveira Sousa
+Professor Auxiliar/que ajudou: Nélio Alves -> github.com/acenelio
+*/
 public class posicao {
     private int linha;
     private int coluna;

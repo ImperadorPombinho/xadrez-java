@@ -1,5 +1,8 @@
 package Xadrez.tabuleirogame;
-
+/*
+Autor: Pedro Henrique Barros de Oliveira Sousa
+Professor Auxiliar/que ajudou: Nélio Alves -> github.com/acenelio
+*/
 public abstract class peca {
     protected posicao posicaoo;
     private tabuleiro tabul;

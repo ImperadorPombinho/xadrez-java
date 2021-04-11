@@ -16,7 +16,10 @@ import Xadrez.xadrezin.pecasXadrez.rainha;
 import Xadrez.xadrezin.pecasXadrez.rei;
 import Xadrez.xadrezin.pecasXadrez.torre;
 
-
+/*
+Autor: Pedro Henrique Barros de Oliveira Sousa
+Professor Auxiliar/que ajudou: Nélio Alves -> github.com/acenelio
+*/
 public class partidaxadrez {
     private tabuleiro tabuleiro;
     private int turno;
